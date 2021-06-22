@@ -11,6 +11,12 @@ namespace EXEMPLO_EPLAYERS_MVC.Models
         public string Nome { get; set; }
         public int IDEquipe { get; set; }
 
+        public string Email { get; set; }
+        
+        public string Senha { get; set; }
+
+        
+        
         private const string CAMINHO = "DataBase/jogador.csv";  // CONSTANTE COM NOME E LOCAL DO ARQUIVO CSV
 
 
@@ -23,7 +29,7 @@ namespace EXEMPLO_EPLAYERS_MVC.Models
 
         private string Preparar(Jogador j1)                     // Primeiro criar PREPARAR, depois CriarJogador()
         {
-            return $"{j1.IDJogador};{j1.Nome};{j1.IDEquipe}";
+            return $"{j1.IDJogador};{j1.Nome};{j1.IDEquipe};{j1.Email};{j1.Senha}";
         }
 
         public void CriarJogador(Jogador j1)
@@ -46,7 +52,10 @@ namespace EXEMPLO_EPLAYERS_MVC.Models
 
         public void Deletar(int _id)
         {
-            throw new System.NotImplementedException();
+            List<string> linhas = LerTodasLinhasCSV(CAMINHO);
+            linhas.RemoveAll(x => x.Split(";")[0] == _id.ToString());
+            
+            ReescreverCSV(CAMINHO, linhas);
         }
 
         public List<Jogador> LerTodos()
@@ -57,10 +66,13 @@ namespace EXEMPLO_EPLAYERS_MVC.Models
             foreach (var item in linhas)
             {
                 string[] linha = item.Split(";");
+
                 Jogador jogador = new Jogador();
                 jogador.IDJogador = Int32.Parse( linha[0] );
                 jogador.Nome = linha[1];
                 jogador.IDEquipe = Int32.Parse( linha[2] );
+                jogador.Email = ( linha[3] );
+                jogador.Senha = ( linha[4] );
 
                 jogadores.Add(jogador);
             }

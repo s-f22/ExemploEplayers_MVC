@@ -26,12 +26,14 @@ namespace EXEMPLO_EPLAYERS_MVC.Controllers
             novoJogador.IDJogador = Int32.Parse(form[ "IDJogador" ]);
             novoJogador.Nome = form[ "Nome" ];
             novoJogador.IDEquipe = Int32.Parse(form[ "IDEquipe" ]);
+            novoJogador.Nome = form[ "Email" ];
+            novoJogador.Senha = form[ "Senha" ];
 
             jogadorModel.CriarJogador(novoJogador);
 
             ViewBag.Jogadores = jogadorModel.LerTodos();
 
-            return LocalRedirect( "~/Jogador" );
+            return LocalRedirect( "~/Jogador/Listar" );
         }
 
     }
