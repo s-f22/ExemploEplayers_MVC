@@ -3,43 +3,54 @@
     ViewData[ "Title" ] = "Jogadores";
 }
 
-<form method= "POST" action='@Url.Action("Cadastrar")'>
+<div class="titulo_pagina">
+    <h1>Cadastro de @ViewData[ "Title" ]</h1>
+</div>
 
-    <label>ID</label>
-    <input type= "text" name= "IDJogador" />
+<form method="POST" action='@Url.Action("Cadastrar")' class="cadastro">
 
-    <label>Nome</label>
-    <input type= "text" name= "Nome" />
+    <div class="campo">
+        <label>ID Jogador</label>
+        <input type="text" name="IDJogador">
+    </div>
 
-    <label>IDEquipe</label>
-    <input type= "text" name= "IDEquipe" />
+    <div class="campo">
+        <label>ID Equipe</label>
+        <input type="text" name="IDEquipe">
+    </div>
 
-    <button type="submit">Cadastrar</button>
+    <div class="campo">
+        <label>Nome</label>
+        <input type="text" name="Nome">
+    </div>
 
+    <div class="campo">
+        <label>Email</label>
+        <input type="email" name="Email">
+    </div>
 
+    <div class="campo">
+        <label>Senha</label>
+        <input type="password" name="Senha">
+    </div>
+
+    <button class="gradient btn" type="submit">Cadastrar</button>
 </form>
 
-<table class="table table-striped table-responsive">
-
+<table>
     <thead>
-
         <th>ID</th>
         <th>Nome</th>
-        <th>ID Equipe</th>
-
+        <th>Email</th>
     </thead>
-
     <tbody>
-        @foreach (var item in ViewBag.Jogadores)
+        @foreach (Jogador j in ViewBag.Jogadores)
         {
             <tr>
-
-                <td>@item.IDJogador</td>
-                <td>@item.Nome</td>
-                <td>@item.IDEquipe</td>
-                
+                <td>@j.IDJogador</td>
+                <td>@j.Nome</td>
+                <td>@j.Email</td>
             </tr>
         }
     </tbody>
-
 </table>

@@ -27,6 +27,16 @@
                     <li><a href="#horarios" title="Ir até a sessão de horários das partidas">HORÁRIOS</a></li>
                     <li><a href="#resultados" title="Ir até a sessão de resultados das partidas">RESULTADOS</a></li>
                     <li><a href="#noticias" title="Ir até a sessão de notícias">NOTÍCIAS</a></li>
+
+                    @if (ViewBag.UserName != null)
+                    {
+                        <li>Olá @ViewBag.UserName</li>
+                        <li><a asp-area="" asp-controller="Login" asp-action="Logout">LOGOUT</a></li>
+                    }else{
+                        <li><a asp-area="" asp-controller="Login" asp-action="Login">LOGIN</a></li>
+                    }
+
+                       
                     <li><a href="#" title="buscar conteudo no site"><i class="fas fa-search"></i></a></li>
                 </ul>
             </nav>

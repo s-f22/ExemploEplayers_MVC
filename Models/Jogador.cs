@@ -14,8 +14,6 @@ namespace EXEMPLO_EPLAYERS_MVC.Models
         public string Email { get; set; }
         
         public string Senha { get; set; }
-
-        
         
         private const string CAMINHO = "DataBase/jogador.csv";  // CONSTANTE COM NOME E LOCAL DO ARQUIVO CSV
 
@@ -67,14 +65,15 @@ namespace EXEMPLO_EPLAYERS_MVC.Models
             {
                 string[] linha = item.Split(";");
 
-                Jogador jogador = new Jogador();
-                jogador.IDJogador = Int32.Parse( linha[0] );
-                jogador.Nome = linha[1];
-                jogador.IDEquipe = Int32.Parse( linha[2] );
-                jogador.Email = ( linha[3] );
-                jogador.Senha = ( linha[4] );
+                Jogador novoJogador = new Jogador();
+                
+                novoJogador.IDJogador = Int32.Parse( linha[0] );
+                novoJogador.Nome = linha[1];
+                novoJogador.IDEquipe = Int32.Parse( linha[2] );
+                novoJogador.Email = ( linha[3] );
+                novoJogador.Senha = ( linha[4] );
 
-                jogadores.Add(jogador);
+                jogadores.Add(novoJogador);
             }
 
             return jogadores;
